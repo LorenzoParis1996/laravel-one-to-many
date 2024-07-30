@@ -20,10 +20,10 @@
     @csrf
     <input class="form-control mb-3" type="text" placeholder="Title" aria-label="default input example" id="title" name="title" value="{{old('title', $project->title)}}">
 
-    <select class="form-select mb-3" aria-label="Default select example" name="type_id">
+     <select class="form-select mb-3" aria-label="Default select example" name="type_id">
         @foreach ($types as $type)
 
-        <option value="{{$type->id}}">{{$type->name}}</option>
+        <option value="{{$type->id}}" {{($type->id==old('type_id', $project->type_id)) ? "selected" : ""}}>{{$type->name}}</option>
         @endforeach
 
       </select>

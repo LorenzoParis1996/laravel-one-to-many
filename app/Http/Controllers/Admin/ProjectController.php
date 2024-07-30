@@ -35,6 +35,7 @@ class ProjectController extends Controller
     {
         $data = $request->validate([
             'title'=>'required|unique:projects|max:30|min:3',
+            'type_id'=>'required|unique:projects',
             'developer'=>'required|unique:projects|max:30|min:4',
             'description'=>'required|unique:projects|min:30|max:500',
             'release_date'=>'required|unique:projects|max:30'
@@ -71,6 +72,7 @@ class ProjectController extends Controller
     {
         $data = $request->validate([
             'title'=>'required|max:30|min:3',
+            'type_id'=>'required',
             'developer'=>'required|max:30|min:4',
             'description'=>'required|min:30|max:500',
             'release_date'=>'required|max:30'
