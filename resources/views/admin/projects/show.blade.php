@@ -14,4 +14,14 @@
     </div>
   </div>
 </div>
+<div class="container mt-2">
+
+    <a class="btn btn-info btn-sm" href="{{route('admin.projects.edit',$project)}}">Edit</a>
+    <form action="{{route('admin.projects.destroy', $project)}}" class="d-inline-block" method="POST">
+        @method('DELETE')
+        @csrf
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+    </form>
+</div>
+
 @endsection
