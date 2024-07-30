@@ -5,13 +5,15 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Project;
+use App\Models\Type;
+use Faker\Generator as Faker;
 
 class ProjectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(Faker $faker): void
     {
         $projects = [
             [
@@ -88,13 +90,16 @@ class ProjectSeeder extends Seeder
         ];
 
         foreach($projects as $project) {
-         $newProject= new Project();
-         $newProject-> title = $project['title'];
-         $newProject-> developer = $project['developer'];
-         $newProject-> description = $project['description'];
-         $newProject-> release_date = $project['release_date'];
-         $newProject-> image = $project['image'];
-         $newProject-> save();
+        $types = Type::all()->pluck('id');
+
+        $newProject= new Project();
+        $newProject-> title = $project['title'];
+        $newProject-> type_id = $faker->randomElement($types);
+        $newProject-> developer = $project['developer'];
+        $newProject-> description = $project['description'];
+        $newProject-> release_date = $project['release_date'];
+        $newProject-> image = $project['image'];
+        $newProject-> save();
      }
     }
 }
